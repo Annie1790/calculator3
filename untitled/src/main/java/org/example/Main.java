@@ -5,10 +5,7 @@ import org.example.Operations.Divide;
 import org.example.Operations.Multiply;
 import org.example.Operations.Subtract;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +19,7 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
 
-    public int computeResult(String operand, ArrayList<Integer> array) {
+    public int computeResult(String operand, ArrayList<Integer> array) throws Exception {
         if (operand.equals("+")) {
             return add.compute(array);
         } else if (operand.equals("-")) {
@@ -58,8 +55,11 @@ public class Main {
         System.out.print("Enter a file: ");
         String fileName = scanner.nextLine();
         System.out.print(fileName);
+        File file = new File(".");
+        System.out.print(file.getAbsolutePath());
+        //
         try {
-            inputStream = new BufferedReader(new FileReader("src/main/java/org.example/test.txt"));
+            inputStream = new BufferedReader(new FileReader("test.txt"));
             int number;
             while((number = inputStream.read()) != -1) {
                 numberArray.add(number);
@@ -82,7 +82,7 @@ public class Main {
         System.out.println("Result is: " + result);
     }
 
-    public void start() {
+    public void start() throws Exception {
         int result;
         String operation = this.getOperation();
         this.getNumbersFromTxtFile();
@@ -91,7 +91,7 @@ public class Main {
         this.printResult(result);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Main App = new Main();
         App.start();
     }
