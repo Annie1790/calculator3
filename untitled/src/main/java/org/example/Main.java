@@ -9,10 +9,11 @@ public class Main {
         System.out.println("please choose operation: +, *, or -");
         Scanner scanner = new Scanner(System.in);
         String operand = scanner.nextLine();
-        Random random = new Random();
-        int number1 = random.nextInt(100);
-        int number2 = random.nextInt(100);
-        System.out.println("random numbers are: " + number1 + " " + number2);
+        System.out.println("enter first number: ");
+        int number1 = scanner.nextInt();
+        System.out.println("enter second number: ");
+        int number2 = scanner.nextInt();
+        System.out.println("Numbers are: " + number1 + " " + number2);
         if (operand.equals("+")) {
             result = number1 + number2;
         } else if (operand.equals("-")) {
