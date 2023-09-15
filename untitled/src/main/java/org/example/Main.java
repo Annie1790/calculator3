@@ -54,14 +54,11 @@ public class Main {
     public void getNumbersFromTxtFile() {
         System.out.print("Enter a file: ");
         String fileName = scanner.nextLine();
-        System.out.print(fileName);
-        File file = new File(".");
-        System.out.print(file.getAbsolutePath());
-        //
         try {
             inputStream = new BufferedReader(new FileReader("test.txt"));
             int number;
             while((number = inputStream.read()) != -1) {
+                System.out.println(inputStream.read());
                 numberArray.add(number);
             }
         } catch (FileNotFoundException e) {
