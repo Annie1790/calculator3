@@ -5,12 +5,17 @@ import org.example.Operations.Divide;
 import org.example.Operations.Multiply;
 import org.example.Operations.Subtract;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     ArrayList<Integer> numberArray = new ArrayList<>();
     Add add = new Add();
+    BufferedReader inputStream = null;
     Subtract subtract = new Subtract();
     Multiply multiply = new Multiply();
     Divide divide = new Divide();
@@ -31,44 +36,63 @@ public class Main {
             return 0;
         }
     }
+// NOT USED IN EXCERCISE 6
+//    public void getEnteredNumber() {
+//        System.out.print("Enter a number: ");
+//        int firstNumber = scanner.nextInt();
+//        numberArray.add(firstNumber);
+//
+//        while(true) {
+//                System.out.print("Enter another number: ");
+//                String number = scanner.next();
+//                if (!number.equals("done")) {
+//                    numberArray.add(Integer.parseInt(number));
+//                } else {
+//                    //todo
+//                    return;
+//                }
+//            }
+//        }
 
-    public void getEnteredNumber() {
-        System.out.print("Enter a number: ");
-        int firstNumber = scanner.nextInt();
-        numberArray.add(firstNumber);
-
-        while(true) {
-                System.out.print("Enter another number: ");
-                String number = scanner.next();
-                if (!number.equals("done")) {
-                    numberArray.add(Integer.parseInt(number));
-                } else {
-                    //todo
-                    return;
-                }
+    public void getNumbersFromTxtFile() {
+        System.out.print("Enter a file: ");
+        String fileName = scanner.nextLine();
+        System.out.print(fileName);
+        try {
+            inputStream = new BufferedReader(new FileReader("src/main/java/org.example/test.txt"));
+            int number;
+            while((number = inputStream.read()) != -1) {
+                numberArray.add(number);
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File not found \n" + e);
+        } catch (IOException e) {
+            throw new RuntimeException("IOException error \n" + e);
         }
+    }
 
-        public String getOperation() {
-            System.out.println("Welcome to the calculator! \n" +
-                    "====================================");
-            System.out.print("please choose operation: +, *, - or / ");
-            return scanner.nextLine();
-        }
+    public String getOperation() {
+        System.out.println("Welcome to the calculator! \n" +
+                "====================================");
+        System.out.print("please choose operation: +, *, - or / ");
+        return scanner.nextLine();
+    }
 
-        public void printResult(int result) {
-            System.out.println("Result is: " + result);
-        }
+    public void printResult(int result) {
+        System.out.println("Result is: " + result);
+    }
 
     public void start() {
         int result;
         String operation = this.getOperation();
-        this.getEnteredNumber();
+        this.getNumbersFromTxtFile();
+//        this.getEnteredNumber();
         result = this.computeResult(operation, numberArray);
         this.printResult(result);
     }
+
     public static void main(String[] args) {
         Main App = new Main();
         App.start();
-        }
     }
+}
