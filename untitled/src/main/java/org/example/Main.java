@@ -53,8 +53,7 @@ public class Main {
             System.out.println("Welcome to the calculator! \n" +
                     "====================================");
             System.out.print("please choose operation: +, *, - or / ");
-            String operation = scanner.nextLine();
-            return operation;
+            return scanner.nextLine();
         }
 
         public void printResult(int result) {
@@ -62,7 +61,7 @@ public class Main {
         }
 
     public void start() {
-        int result = 0;
+        int result;
         String operation = this.getOperation();
         this.getEnteredNumber();
         result = this.computeResult(operation, numberArray);
