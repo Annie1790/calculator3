@@ -32,23 +32,41 @@ public class Main {
         }
     }
 
-    public void getArrayOfEnteredNumbers(int arraySize) {
-        for (int i = 1; i <= arraySize; i++) {
-            System.out.print("Enter number " + i + ": ");
-            Integer number = scanner.nextInt();
-            numberArray.add(number);
+    public void getEnteredNumber() {
+        System.out.print("Enter a number: ");
+        int firstNumber = scanner.nextInt();
+        numberArray.add(firstNumber);
+
+        while(true) {
+                System.out.print("Enter another number: ");
+                String number = scanner.next();
+                if (!number.equals("done")) {
+                    numberArray.add(Integer.parseInt(number));
+                } else {
+                    //todo
+                    return;
+                }
+            }
         }
-    }
+
+        public String getOperation() {
+            System.out.println("Welcome to the calculator! \n" +
+                    "====================================");
+            System.out.print("please choose operation: +, *, - or / ");
+            String operation = scanner.nextLine();
+            return operation;
+        }
+
+        public void printResult(int result) {
+            System.out.println("Result is: " + result);
+        }
 
     public void start() {
         int result = 0;
-        System.out.print("please choose operation: +, *, - or / ");
-        String operation = scanner.nextLine();
-        System.out.print("How many numbers? : ");
-        int operand = scanner.nextInt();
-        this.getArrayOfEnteredNumbers(operand);
+        String operation = this.getOperation();
+        this.getEnteredNumber();
         result = this.computeResult(operation, numberArray);
-        System.out.println("Result is: " + result);
+        this.printResult(result);
     }
     public static void main(String[] args) {
         Main App = new Main();
