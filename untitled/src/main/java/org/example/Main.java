@@ -1,9 +1,25 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-            System.out.println("hello world!");
+        int result = 0;
+        System.out.println("please choose operation: +, *, or -");
+        Scanner scanner = new Scanner(System.in);
+        String operand = scanner.nextLine();
+        Random random = new Random();
+        int number1 = random.nextInt(100);
+        int number2 = random.nextInt(100);
+        System.out.println("random numbers are: " + number1 + " " + number2);
+        if (operand.equals("+")) {
+            result = number1 + number2;
+        } else if (operand.equals("-")) {
+            result = number1 - number2;
+        } else if (operand.equals("*")) {
+            result = number1 * number2;
+        }
+        System.out.println("Result is: " + result);
         }
     }
