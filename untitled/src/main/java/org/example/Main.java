@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Logging.Logging;
 import org.example.Operations.Add;
 import org.example.Operations.Divide;
 import org.example.Operations.Multiply;
@@ -15,11 +16,14 @@ import java.util.Scanner;
 public class Main {
     ArrayList<Integer> numberArray = new ArrayList<>();
     Add add = new Add();
-    BufferedReader inputStream = null;
     Subtract subtract = new Subtract();
     Multiply multiply = new Multiply();
     Divide divide = new Divide();
     Scanner scanner = new Scanner(System.in);
+    Logging logger = new Logging();
+
+    public Main() throws IOException {
+    }
 
 
     public int computeResult(String operand, ArrayList<Integer> array) throws Exception {
@@ -86,7 +90,7 @@ public class Main {
         this.getNumbersFromTxtFile();
 //        this.getEnteredNumber();
         result = this.computeResult(operation, numberArray);
-        this.printResult(result);
+        logger.writeToFile(Integer.toString(result));
     }
 
     public static void main(String[] args) throws Exception {
