@@ -7,10 +7,10 @@ import org.example.Operations.Multiply;
 import org.example.Operations.Subtract;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -36,8 +36,7 @@ public class Main {
         } else if (operand.equals("/")) {
             return divide.compute(array);
         } else {
-            //todo
-            return 0;
+            throw new InputMismatchException();
         }
     }
 // NOT USED IN EXCERCISE 6
