@@ -6,6 +6,9 @@ import org.example.Operations.Multiply;
 import org.example.Operations.Subtract;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -51,21 +54,19 @@ public class Main {
 //            }
 //        }
 
-    public void getNumbersFromTxtFile() {
+    public void getNumbersFromTxtFile() throws IOException {
         System.out.print("Enter a file: ");
         String fileName = scanner.nextLine();
-        try {
-            inputStream = new BufferedReader(new FileReader("test.txt"));
-            int number;
-            while((number = inputStream.read()) != -1) {
-                System.out.println(inputStream.read());
-                numberArray.add(number);
+        Path filePath = Paths.get(fileName);
+        Scanner scanner = new Scanner(filePath);
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                numberArray.add(scanner.nextInt());
+            } else {
+                scanner.next();
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found \n" + e);
-        } catch (IOException e) {
-            throw new RuntimeException("IOException error \n" + e);
         }
+        scanner.close();
     }
 
     public String getOperation() {
